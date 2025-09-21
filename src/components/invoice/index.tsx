@@ -2,18 +2,29 @@
 
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { InvoiceHeader } from "./header";
 
 export const Invoice = () => {
   return (
     <Wrapper>
-      <div></div>
+      <div>
+        <InvoiceHeader />
+      </div>
     </Wrapper>
   );
 };
 
 const Wrapper = ({ children }: { children: ReactNode }) => {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    if (!mounted) {
+      setMounted(true);
+    }
+  }, []);
+
   return (
     <div className="relative">
       <div
