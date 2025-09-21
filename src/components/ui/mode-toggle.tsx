@@ -23,7 +23,7 @@ export const ModeToggle = () => {
   const currentMode = theme === "dark" ? "edit" : "preview";
 
   return (
-    <div className="flex gap-4 px-2 py-1.5 rounded-sm backdrop-blur-md border border-neutral-800 bg-background">
+    <div className="flex gap-4 px-2 py-1.5 text-white rounded-sm backdrop-blur-md border border-neutral-800 bg-[#0f0f0f]">
       <Button
         label="Edit"
         onClick={() => handleModeChange("edit")}
@@ -55,8 +55,10 @@ const Button = ({ label, mode, onClick }: ButtonProps) => {
     >
       <span
         className={cn(
-          "size-[6px] inline-block rounded-full outline outline-offset-1 pointer-events-none",
-          isActive ? "bg-foreground" : "bg-transparent",
+          "size-[6px] inline-block rounded-full outline outline-offset-1 pointer-events-none transition-colors",
+          isActive
+            ? "bg-white outline-white"
+            : "bg-transparent outline-neutral-600"
         )}
       />
       <span className="font-mono text-xs uppercase">{label}</span>

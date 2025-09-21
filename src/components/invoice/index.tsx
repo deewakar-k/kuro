@@ -4,12 +4,22 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { ReactNode, useEffect, useState } from "react";
 import { InvoiceHeader } from "./header";
+import { InvoiceParties } from "./parties";
+import { InvoiceItems } from "./items";
+import { InvoiceSummary } from "./summary";
+import { InvoicePaymentDetails } from "./payment";
 
 export const Invoice = () => {
   return (
     <Wrapper>
-      <div>
+      <div className="flex flex-col gap-6">
         <InvoiceHeader />
+        <InvoiceParties />
+        <InvoiceItems />
+        <div className="flex justify-end">
+          <InvoiceSummary />
+        </div>
+        <InvoicePaymentDetails />
       </div>
     </Wrapper>
   );
@@ -20,10 +30,12 @@ const Wrapper = ({ children }: { children: ReactNode }) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (!mounted) {
-      setMounted(true);
-    }
+    setMounted(true);
   }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className="relative">

@@ -1,29 +1,39 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --surface: #f0f0f0;
+    --background: #ffffff;
+    --foreground: #171717;
+    --surface: #f0f0f0;
+    --muted-foreground: oklch(0.556 0 0);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-surface: var(--surface);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
+.dark {
     --background: #0f0f0f;
     --foreground: #ededed;
     --surface: #121212;
-  }
+    --muted-foreground: oklch(0.708 0 0);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-surface: var(--surface);
+    --color-muted-foreground: var(--muted-foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+    body {
+        @apply bg-background text-foreground font-mono text-[11px];
+    }
+}
+
+.invoice-item-textarea {
+    line-height: 1.2 !important;
+    padding: 0 !important;
+    border: none !important;
+    min-height: 24px !important;
 }
