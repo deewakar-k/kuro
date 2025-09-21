@@ -2,9 +2,19 @@
 
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export const ModeToggle = () => {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   const handleModeChange = (newMode: "edit" | "preview") => {
     setTheme(newMode === "edit" ? "dark" : "light");
